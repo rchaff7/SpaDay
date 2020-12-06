@@ -8,14 +8,24 @@
 <form method="post">
     <p>
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" value="@ViewBag.username"/>
     </p>
     <p>
         <label for="email">Email:</label>
-        <input type="email" name="email" />
+        <input type="email" name="email" value="@ViewBag.email" />
     </p>
     <p>
         <label for="password">Password:</label>
         <input type="password" name="password" />
     </p>
+    <p>
+        <label for="verify">Confirm Password:</label>
+        <input type="password" name="verify" />
+    </p>
+    <button type="submit">Submit</button>
 </form>
+
+@if (ViewBag.error != "" && ViewBag.error != null)
+{
+    <p>@ViewBag.error</p>
+}

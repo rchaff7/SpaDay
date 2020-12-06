@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SpaDay.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,23 @@ namespace SpaDay.Controllers
         public IActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost("/user/add")]
+        public IActionResult SubmitAddUserForm(User newUser, string verify)
+        {
+            if(verify != null && verify != "" && newUser.Password == verify)
+            {
+                ViewBag.userName = newUser.Username;
+                return View("index");
+            }
+            else
+            {
+                ViewBag.username = newUser.Username;
+                ViewBag.email = newUser.Email;
+                ViewBag.error = "Password fields did not match.";
+                return View("add");
+            }
         }
     }
 }
